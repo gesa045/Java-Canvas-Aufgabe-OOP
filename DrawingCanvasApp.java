@@ -9,6 +9,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JSlider;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 
 
@@ -32,7 +33,7 @@ public class DrawingCanvasApp extends JFrame {
         canvas = new DrawingCanvas();
         add(canvas, BorderLayout.CENTER);
 
-        // MenuBalken oben für zukünftige Buttons
+        // Menü-Balken ("toolbar") oben für zukünftige Buttons
         JPanel toolbar = new JPanel();
         add(toolbar, BorderLayout.NORTH);
         toolbar.setBackground(Color.LIGHT_GRAY);
@@ -60,7 +61,11 @@ public class DrawingCanvasApp extends JFrame {
         });
 
         // Slider für Strichstärke
-        JSlider strokeSlider = new JSlider(1, 20, 5);
+        JSlider strokeSlider = new JSlider(0, 20, 5);
+        strokeSlider.setMajorTickSpacing(5); // Markierungen am Slider alle 5 Einheiten
+        strokeSlider.setMinorTickSpacing(1);
+        strokeSlider.setPaintTicks(true);
+        strokeSlider.setPaintLabels(true);
         toolbar.add(new JLabel("Strichstärke: "));
         toolbar.add(strokeSlider);
         strokeSlider.addChangeListener(e -> {
@@ -78,7 +83,25 @@ public class DrawingCanvasApp extends JFrame {
         styleBox.addActionListener(e -> {
             String selected = (String) styleBox.getSelectedItem();
             canvas.setStrokeStyle(selected);
-    });
+        });
+
+        // Help-Button mit Popup Fenster
+        JButton helpButton = new JButton("?");
+        toolbar.add(helpButton);
+        helpButton.addActionListener(e -> {
+            JOptionPane.showMessageDialog(
+                this,
+                "Funktionen: \n\n" +
+                "Zeichnen: linke Maustaste gedrückt halten und ziehen\n" +
+                "alles löschen: Die komplette Leinwand wird geleert\n" +
+                "Farbwahl: Wähle eine gewünschte Farbe für den nächsten Strich\n" +
+                "Strichstärke: Ändere die Dicke des Striches (Dicke 1-20)\n" +
+                "Strichart: Wähle zwischen durchgezogenem und gestricheltem Strich\n", 
+                "Hilfe",
+                JOptionPane.INFORMATION_MESSAGE // gibt dem fenster den Name "Hilfe"
+            );
+        });
+
 
         // Setze minimale Fenstergröße und initiale Größe
         setMinimumSize(new Dimension(900, 650));
