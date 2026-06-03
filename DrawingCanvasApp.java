@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
+import javax.swing.JSlider;
+import javax.swing.JLabel;
 
 
 /**
@@ -28,21 +30,20 @@ public class DrawingCanvasApp extends JFrame {
         canvas = new DrawingCanvas();
         add(canvas, BorderLayout.CENTER);
 
-
         // MenuBalken oben für zukünftige Buttons
         JPanel toolbar = new JPanel();
         add(toolbar, BorderLayout.NORTH);
         toolbar.setBackground(Color.LIGHT_GRAY);
 
         // Button kann jetzt die clear Funktion des Canvas aufrufen
-        JButton clearButton = new JButton("clear Canvas");
+        JButton clearButton = new JButton("alles löschen");
         toolbar.add(clearButton);
         clearButton.addActionListener(e -> {
             canvas.clear();
         });
 
         // zweiter Button für Farbauswahl
-        JButton colorButton = new JButton("choose color");
+        JButton colorButton = new JButton("Farbwahl");
         toolbar.add(colorButton);
         colorButton.addActionListener(e -> {
             // 	Erklärung für showDialog von docs.oracle.com: showDialog(Component component, String title, Color initialColor) Shows a modal color-chooser dialog and blocks until the dialog is hidden.
@@ -55,6 +56,15 @@ public class DrawingCanvasApp extends JFrame {
             if (newColor != null) {
                 canvas.setStrokeColor(newColor);
             }
+        });
+
+        // Slider für Strichstärke
+        JSlider strokeSlider = new JSlider(1, 20, 5);
+        toolbar.add(new JLabel("Strichstärke: "));
+        toolbar.add(strokeSlider);
+        strokeSlider.addChangeListener(e -> {
+            int value = strokeSlider.getValue();
+            canvas.setStrokeWidth(value);
         });
 
         // Setze minimale Fenstergröße und initiale Größe

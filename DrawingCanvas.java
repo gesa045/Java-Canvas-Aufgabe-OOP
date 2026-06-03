@@ -16,6 +16,7 @@ public class DrawingCanvas extends JPanel {
     private final List<StrokeSegment> segments = new ArrayList<>();
     private StrokePath currentPath;
     private Color strokeColor = Color.BLACK;
+    private int strokeWidth = 5;
 
     /**
      * Creates the canvas and installs mouse handling.
@@ -32,7 +33,7 @@ public class DrawingCanvas extends JPanel {
     }
 
     public void beginStroke(Point point) {
-        currentPath = new StrokePath(strokeColor, 5);
+        currentPath = new StrokePath(strokeColor, strokeWidth);
         currentPath.addPoint(point);
         repaint();
     }
@@ -68,6 +69,12 @@ public class DrawingCanvas extends JPanel {
     public void setStrokeColor(Color color) {
         this.strokeColor = color;
     }
+
+    // Setter für Strichstärke
+    public void setStrokeWidth(int width) {
+        this.strokeWidth = width;
+    }
+
 
     @Override
     protected void paintComponent(Graphics graphics) {
