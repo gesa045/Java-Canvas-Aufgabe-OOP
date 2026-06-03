@@ -3,25 +3,30 @@ import java.awt.Dimension;
 import java.awt.Color;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JButton;
-import javax.swing.JColorChooser;
-import javax.swing.JSlider;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
+import javax.swing.JPanel; // Für "Toolbar" über dem "Canvas"
+import javax.swing.JButton; // Buttons
+import javax.swing.JColorChooser; // für Farbauswahl
+import javax.swing.JSlider; // Slider für Strichstärke
+import javax.swing.JLabel; // Beschriftung für Strichstärke und Strichart
+import javax.swing.JComboBox; // "DropDown Menu" für Strichart
+import javax.swing.JOptionPane; // für Popup Fenster mit Hilfetext
 
 
 
 /**
- * A basic Swing drawing application with only a freehand drawing canvas.
+ * A basic Swing drawing application with a freehand drawing canvas 
+ * and a toolbar with buttons.
  */
 public class DrawingCanvasApp extends JFrame {
 
+    /**
+     * Die Zeichenfläche für alle Linien.
+     */
     private final DrawingCanvas canvas;
 
     /**
-     * Creates the application window.
+     * Erstellt das Haiptfenster der Anwendung. 
+     * Initialisierung der GUI-Elemente (toolbar, buttons, slider etc.)
      */
     public DrawingCanvasApp() {
         super("Drawing Canvas App");
@@ -33,19 +38,19 @@ public class DrawingCanvasApp extends JFrame {
         canvas = new DrawingCanvas();
         add(canvas, BorderLayout.CENTER);
 
-        // Menü-Balken ("toolbar") oben für zukünftige Buttons
+        // Menü-Balken ("toolbar") oben für Steuerelemente
         JPanel toolbar = new JPanel();
         add(toolbar, BorderLayout.NORTH);
         toolbar.setBackground(Color.LIGHT_GRAY);
 
-        // Button kann jetzt die clear Funktion des Canvas aufrufen
+        // Button zum leeren der Zeichenfläche
         JButton clearButton = new JButton("alles löschen");
         toolbar.add(clearButton);
         clearButton.addActionListener(e -> {
             canvas.clear();
         });
 
-        // zweiter Button für Farbauswahl
+        // Button für Farbauswahl
         JButton colorButton = new JButton("Farbwahl");
         toolbar.add(colorButton);
         colorButton.addActionListener(e -> {
@@ -66,14 +71,16 @@ public class DrawingCanvasApp extends JFrame {
         strokeSlider.setMinorTickSpacing(1);
         strokeSlider.setPaintTicks(true);
         strokeSlider.setPaintLabels(true);
+        
         toolbar.add(new JLabel("Strichstärke: "));
         toolbar.add(strokeSlider);
+      
         strokeSlider.addChangeListener(e -> {
             int value = strokeSlider.getValue();
             canvas.setStrokeWidth(value);
         });
 
-        // ComboBox (DropDown-Menü) für Strichart
+        // ComboBox (DropDown-Menü) für Strichart (durchgezogen / gestrichelt)
         JComboBox<String> styleBox = new JComboBox<>(
             new String[]{"durchgezogen", "gestrichelt"}
         );
@@ -85,7 +92,7 @@ public class DrawingCanvasApp extends JFrame {
             canvas.setStrokeStyle(selected);
         });
 
-        // Help-Button mit Popup Fenster
+        // Help-Button mit Popup Fenster für Erklärung der Funktionen
         JButton helpButton = new JButton("?");
         toolbar.add(helpButton);
         helpButton.addActionListener(e -> {
@@ -98,7 +105,7 @@ public class DrawingCanvasApp extends JFrame {
                 "Strichstärke: Ändere die Dicke des Striches (Dicke 1-20)\n" +
                 "Strichart: Wähle zwischen durchgezogenem und gestricheltem Strich\n", 
                 "Hilfe",
-                JOptionPane.INFORMATION_MESSAGE // gibt dem fenster den Name "Hilfe"
+                JOptionPane.INFORMATION_MESSAGE // gibt dem Fenster den Name "Hilfe"
             );
         });
 
@@ -109,7 +116,7 @@ public class DrawingCanvasApp extends JFrame {
     }
 
     /**
-     * Program entry point.
+     * Startpunkt der Anwendung.
      *
      * @param args command-line arguments, not used
      */

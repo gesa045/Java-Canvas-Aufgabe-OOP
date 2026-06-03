@@ -38,7 +38,10 @@ public class StrokeSegment {
                 0.0f
             ));
         } else {
-            graphics2d.setStroke(new BasicStroke(width));
+            graphics2d.setStroke(new BasicStroke(
+                width, 
+                BasicStroke.CAP_ROUND, 
+                BasicStroke.JOIN_ROUND));
         }
         graphics2d.drawLine(x1, y1, x2, y2);
         graphics2d.setStroke(previousStroke);

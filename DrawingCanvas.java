@@ -9,18 +9,30 @@ import java.util.List;
 import javax.swing.JPanel;
 
 /**
- * The drawing surface.
+ * Zeichenfläche
+ * Verwaltet die Striche, die gezeichnet werden, und reagiert auf Maus-Eingaben.
  */
 public class DrawingCanvas extends JPanel {
 
+    /** 
+     * Liste aller Striche, die dauerhaft angezeigt werden sollen. 
+     * Jeder Strich hat mehrere Segmente, die in der Klasse StrokeSegment dargestellt werden.
+     */
     private final List<StrokeSegment> segments = new ArrayList<>();
+    /** 
+     * Aktueller Strich, der gerade gezeichnet wird, aber noch nicht in segments aufgenommen wurde.
+     */
     private StrokePath currentPath;
+    /**
+     * Aktuelle Farbe, Strichstärke und Strichart für neue Striche.
+     */
     private Color strokeColor = Color.BLACK;
     private int strokeWidth = 5;
     private String strokeStyle = "durchgezogen";
 
     /**
-     * Creates the canvas and installs mouse handling.
+     * Erstellt die Zeichenfläche und den MouseListener für das freie 
+     * Zeichnen mit der Maus.
      */
     public DrawingCanvas() {
         CanvasMouseListener mouseListener = new CanvasMouseListener(this);
