@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JSlider;
 import javax.swing.JLabel;
+import javax.swing.JComboBox;
+
 
 
 /**
@@ -52,7 +54,6 @@ public class DrawingCanvasApp extends JFrame {
                 "Wähle eine Farbe",
                 Color.BLACK
             );
-
             if (newColor != null) {
                 canvas.setStrokeColor(newColor);
             }
@@ -66,6 +67,18 @@ public class DrawingCanvasApp extends JFrame {
             int value = strokeSlider.getValue();
             canvas.setStrokeWidth(value);
         });
+
+        // ComboBox (DropDown-Menü) für Strichart
+        JComboBox<String> styleBox = new JComboBox<>(
+            new String[]{"durchgezogen", "gestrichelt"}
+        );
+        toolbar.add(new JLabel("Strichart: "));
+        toolbar.add(styleBox);
+
+        styleBox.addActionListener(e -> {
+            String selected = (String) styleBox.getSelectedItem();
+            canvas.setStrokeStyle(selected);
+    });
 
         // Setze minimale Fenstergröße und initiale Größe
         setMinimumSize(new Dimension(900, 650));
