@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 
 
 /**
@@ -33,10 +34,28 @@ public class DrawingCanvasApp extends JFrame {
         add(toolbar, BorderLayout.NORTH);
         toolbar.setBackground(Color.LIGHT_GRAY);
 
-        // erster Button zum Testen
-        JButton ClearButton = new JButton("Test Button");
-        toolbar.add(ClearButton);
+        // Button kann jetzt die clear Funktion des Canvas aufrufen
+        JButton clearButton = new JButton("clear Canvas");
+        toolbar.add(clearButton);
+        clearButton.addActionListener(e -> {
+            canvas.clear();
+        });
 
+        // zweiter Button für Farbauswahl
+        JButton colorButton = new JButton("choose color");
+        toolbar.add(colorButton);
+        colorButton.addActionListener(e -> {
+            // 	Erklärung für showDialog von docs.oracle.com: showDialog(Component component, String title, Color initialColor) Shows a modal color-chooser dialog and blocks until the dialog is hidden.
+            Color newColor = JColorChooser.showDialog(
+                this,
+                "Wähle eine Farbe",
+                Color.BLACK
+            );
+
+            if (newColor != null) {
+                canvas.setStrokeColor(newColor);
+            }
+        });
 
         // Setze minimale Fenstergröße und initiale Größe
         setMinimumSize(new Dimension(900, 650));
