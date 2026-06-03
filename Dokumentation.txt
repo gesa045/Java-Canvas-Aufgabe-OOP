@@ -1,0 +1,39 @@
+Beschreibung des Projektes:
+    Das Projekt basiert auf gegebener Anwendung (DrawingCanvasApp). Ursprünglich wurde nur einfache Freihandzeichnung unterstützt.
+    Die Anwendung wurde um mehrere GUI-Elemente und extra Zeichenfunktionen erweitert.
+    Ziel war es, typische grundlegende Funktionen eines einfachen Zeichenprogramms nachzubilden.
+    Dabei haben wir darauf geachtet, Features auszuwählen, die sich mit Java Swing gut umsetzen lassen und einen praktsichen Nutzen haben.
+
+Features:
+    Neue GUI-Elemente
+    - Buttons
+        > Zeichenfläche leeren (alles löschen)
+        > Farbe auswählen (Color Picker)
+        > Hilfe-Funktion
+    - Slider
+        > Einstellung der Strichstärke (0-20)
+    - DropDown Menü (ComboBox)
+        > Auswahl des Strichstils (durchgezogen / gestrichelt)
+    - PopUp Fenster
+        > Anzeige einer Hilfeübersicht mit Funktionserklärung 
+
+    implementierte Funktionen
+    > Alles löschen
+    > Farbe ändern
+    > Strichdicke ändern
+    > Strichart ändern  
+    > Hilfefenster
+
+Wie ausführen und benutzen?:
+1. Projekt in einer Java-IDE öffnen
+2. Datei DrawingCanvasApp.java starten
+3. Die main-Methode ausführen
+4. Zeichnen ;)
+
+Benutzung
+    Zeichnen: linke Maustaste gedrückt halten und ziehen
+    alles löschen: Die komplette Leinwand wird geleert
+    Farbwahl: Wähle eine gewünschte Farbe für den nächsten Strich
+    Strichstärke: Ändere die Dicke des Striches (Dicke 1-20)
+    Strichart: Wähle zwischen durchgezogenem und gestricheltem Strich
+

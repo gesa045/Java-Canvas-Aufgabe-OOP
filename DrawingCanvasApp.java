@@ -14,8 +14,8 @@ import javax.swing.JOptionPane; // für Popup Fenster mit Hilfetext
 
 
 /**
- * A basic Swing drawing application with a freehand drawing canvas 
- * and a toolbar with buttons.
+ * Hauptklasse der Anwendung. Erstellt das Hauptfenster mit einer Zeichenfläche
+ * und einer Toolbar mit Steuerelementen (Buttons, Slider, DropDown-Menü).
  */
 public class DrawingCanvasApp extends JFrame {
 
@@ -25,7 +25,7 @@ public class DrawingCanvasApp extends JFrame {
     private final DrawingCanvas canvas;
 
     /**
-     * Erstellt das Haiptfenster der Anwendung. 
+     * Erstellt das Hauptfenster der Anwendung. 
      * Initialisierung der GUI-Elemente (toolbar, buttons, slider etc.)
      */
     public DrawingCanvasApp() {
@@ -118,7 +118,7 @@ public class DrawingCanvasApp extends JFrame {
     /**
      * Startpunkt der Anwendung.
      *
-     * @param args command-line arguments, not used
+     * @param args Kommandozeilenargumente (werden nicht verwendet)
      */
     public static void main(String[] args) {
         DrawingCanvasApp app = new DrawingCanvasApp();
