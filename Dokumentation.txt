@@ -30,7 +30,7 @@ Wie ausführen und benutzen?:
 3. Die main-Methode ausführen
 4. Zeichnen ;)
 
-Benutzung
+Benutzung:
     Zeichnen: linke Maustaste gedrückt halten und ziehen
     alles löschen: Die komplette Leinwand wird geleert
     Farbwahl: Wähle eine gewünschte Farbe für den nächsten Strich
